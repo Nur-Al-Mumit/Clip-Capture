@@ -11,14 +11,8 @@
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/watch*"],
-      "js": ["content-loader.js"],
-      "css": ["dist/assets/content.css"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["dist/*", "assets/*", "content.js"],
-      "matches": ["*://*.youtube.com/*"]
+      "js": ["content.js"],
+      "css": ["assets/content.css"]
     }
   ],
   "host_permissions": ["*://*.youtube.com/*"]
