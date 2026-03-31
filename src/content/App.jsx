@@ -15,9 +15,9 @@ const App = () => {
     const [videoTitle, setVideoTitle] = useState('Video');
     useEffect(() => {
         const getTitle = () => {
-            let title = document.querySelector('ytd-watch-metadata h1')?.innerText || 
-                        document.querySelector('meta[property="og:title"]')?.content ||
-                        document.title.replace(/ - YouTube$/, "").trim();
+            let title = document.querySelector('ytd-watch-metadata h1')?.innerText ||
+                document.querySelector('meta[property="og:title"]')?.content ||
+                document.title.replace(/ - YouTube$/, "").trim();
             setVideoTitle(title && title !== "YouTube" ? title : "Video");
         };
         getTitle();
@@ -48,7 +48,7 @@ const App = () => {
 
         if (!video) return alert("Video not found!");
         if (e <= s) return alert("End must be after Start!");
-        
+
         // SaaS Feature Check
         if (!isPremium && (e - s) > 15) {
             setShowUpgrade(true);
@@ -61,18 +61,18 @@ const App = () => {
         // 1. Jump to start time
         video.currentTime = s;
         video.play();
-        
+
         // 2. Setup the Stream Capture
         const stream = video.captureStream();
-        const mediaRecorder = new MediaRecorder(stream, { 
-            mimeType: 'video/webm; codecs=vp9' 
+        const mediaRecorder = new MediaRecorder(stream, {
+            mimeType: 'video/webm; codecs=vp9'
         });
         const chunks = [];
-        
-        mediaRecorder.ondataavailable = (ev) => { 
-            if (ev.data.size > 0) chunks.push(ev.data); 
+
+        mediaRecorder.ondataavailable = (ev) => {
+            if (ev.data.size > 0) chunks.push(ev.data);
         };
-        
+
         mediaRecorder.onstop = () => {
             const blob = new Blob(chunks, { type: 'video/webm' });
             const url = URL.createObjectURL(blob);
@@ -81,13 +81,13 @@ const App = () => {
             a.href = url;
             a.download = `${cleanTitle}-${startTime.replace(/:/g, '-')}-${endTime.replace(/:/g, '-')}.webm`;
             a.click();
-            
+
             setIsRecording(false);
             setStatus('ENGINE READY');
         };
 
         mediaRecorder.start();
-        
+
         // 3. Stop after the range length
         setTimeout(() => {
             mediaRecorder.stop();
@@ -104,7 +104,7 @@ const App = () => {
 
     return (
         <div id="yt-range-downloader-panel" className="yrd-premium-skin">
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="yrd-container"
@@ -115,7 +115,7 @@ const App = () => {
                         <Clapperboard size={14} className="yrd-clapper-icon" />
                         <span className="yrd-video-title">{videoTitle}</span>
                         {!isPremium && (
-                            <span 
+                            <span
                                 onClick={() => setShowUpgrade(true)}
                                 className="yrd-free-tag"
                             >
@@ -129,14 +129,14 @@ const App = () => {
                 {/* Main Content Area */}
                 <div className="yrd-content">
                     <div className="yrd-tabs">
-                        <button 
-                            className={activeTab === 'capture' ? 'active' : ''} 
+                        <button
+                            className={activeTab === 'capture' ? 'active' : ''}
                             onClick={() => setActiveTab('capture')}
                         >
                             Capture
                         </button>
-                        <button 
-                            className={activeTab === 'format' ? 'active' : ''} 
+                        <button
+                            className={activeTab === 'format' ? 'active' : ''}
                             onClick={() => setActiveTab('format')}
                         >
                             Format {!isPremium && <Lock size={10} />}
@@ -146,7 +146,7 @@ const App = () => {
                     <div className="yrd-body">
                         {activeTab === 'capture' && (
                             <AnimatePresence mode="wait">
-                                <motion.div 
+                                <motion.div
                                     key="capture"
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -169,7 +169,7 @@ const App = () => {
                                         </div>
                                     </div>
 
-                                    <button 
+                                    <button
                                         onClick={handleCapture}
                                         className={`yrd-btn-primary ${isRecording ? 'recording' : ''}`}
                                     >
@@ -190,7 +190,7 @@ const App = () => {
                         )}
 
                         {activeTab === 'format' && (
-                            <motion.div 
+                            <motion.div
                                 key="format"
                                 initial={{ opacity: 0, x: 10 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -201,14 +201,14 @@ const App = () => {
                                         <b>WebM</b>
                                         <span>Standard Original</span>
                                     </div>
-                                    <div 
+                                    <div
                                         className={`yrd-format-card ${!isPremium ? 'locked' : ''}`}
                                         onClick={() => !isPremium && setShowUpgrade(true)}
                                     >
                                         <b>MP4 HD</b>
                                         <span>Pro Feature <Lock size={12} /></span>
                                     </div>
-                                    <div 
+                                    <div
                                         className={`yrd-format-card ${!isPremium ? 'locked' : ''}`}
                                         onClick={() => !isPremium && setShowUpgrade(true)}
                                     >
@@ -221,20 +221,20 @@ const App = () => {
                     </div>
 
                     <div className="yrd-footer-note">
-                        {status} • Pure local processing
+                        {status}
                     </div>
                 </div>
 
                 {/* Upgrade Modal Overlay */}
                 <AnimatePresence>
                     {showUpgrade && (
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             className="yrd-overlay"
                         >
-                            <motion.div 
+                            <motion.div
                                 initial={{ scale: 0.9, y: 20 }}
                                 animate={{ scale: 1, y: 0 }}
                                 exit={{ scale: 0.9, y: 20 }}
@@ -249,7 +249,7 @@ const App = () => {
                                     <li>📂 Batch Downloads</li>
                                 </ul>
                                 <button className="yrd-btn-unlock">Unlock Everything — $4.99</button>
-                                <button 
+                                <button
                                     className="yrd-btn-cancel"
                                     onClick={() => setShowUpgrade(false)}
                                 >
