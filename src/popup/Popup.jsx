@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings, ShieldCheck, Crown, ExternalLink, Mail, MessageSquare } from 'lucide-react';
+import { Settings, ShieldCheck, History, ExternalLink, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Popup = () => {
@@ -13,25 +13,17 @@ const Popup = () => {
                 <header className="popup-header">
                     <div className="brand">
                         <div className="logo">✨</div>
-                        <h1>Pure Capture Pro</h1>
+                        <h1>Pure Capture</h1>
                     </div>
                     <span className="badge">v6.0</span>
                 </header>
 
                 <div className="status-banner">
                     <ShieldCheck size={16} color="#2ed573" />
-                    <span>Engine Active & Protected</span>
+                    <span>Engine Active & Ready</span>
                 </div>
 
                 <div className="menu-sections">
-                    <div className="pro-card">
-                        <div className="pro-text">
-                            <h3>Unlock Unlimited</h3>
-                            <p>Remove 15s limit & get MP4 HD</p>
-                        </div>
-                        <Crown size={24} className="crown-icon" />
-                    </div>
-
                     <nav className="menu-links">
                         <div className="menu-item">
                             <Settings size={18} />

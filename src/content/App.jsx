@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Play, Save, History, Settings, ExternalLink, Zap, Lock, Video, Clapperboard } from 'lucide-react';
+import { Zap, Clapperboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const App = () => {
-    const [isPremium, setIsPremium] = useState(false);
     const [activeTab, setActiveTab] = useState('capture');
     const [startTime, setStartTime] = useState('0:00');
     const [endTime, setEndTime] = useState('1:00');
-    const [status, setStatus] = useState('ENGINE READY');
     const [isRecording, setIsRecording] = useState(false);
-    const [showUpgrade, setShowUpgrade] = useState(false);
 
     // Get YouTube Video Title
     const [videoTitle, setVideoTitle] = useState('Video');
@@ -49,14 +46,7 @@ const App = () => {
         if (!video) return alert("Video not found!");
         if (e <= s) return alert("End must be after Start!");
 
-        // SaaS Feature Check
-        if (!isPremium && (e - s) > 15) {
-            setShowUpgrade(true);
-            return;
-        }
-
         setIsRecording(true);
-        setStatus('RECORDING...');
 
         // 1. Jump to start time
         video.currentTime = s;
@@ -83,7 +73,6 @@ const App = () => {
             a.click();
 
             setIsRecording(false);
-            setStatus('ENGINE READY');
         };
 
         mediaRecorder.start();
@@ -114,15 +103,6 @@ const App = () => {
                     <div className="yrd-title">
                         <Clapperboard size={14} className="yrd-clapper-icon" />
                         <span className="yrd-video-title">{videoTitle}</span>
-                        {!isPremium && (
-                            <span
-                                onClick={() => setShowUpgrade(true)}
-                                className="yrd-free-tag"
-                            >
-                                FREE
-                            </span>
-                        )}
-                        {isPremium && <span className="yrd-pro-tag">PRO</span>}
                     </div>
                 </div>
 
@@ -139,7 +119,7 @@ const App = () => {
                             className={activeTab === 'format' ? 'active' : ''}
                             onClick={() => setActiveTab('format')}
                         >
-                            Format {!isPremium && <Lock size={10} />}
+                            Format
                         </button>
                     </div>
 
@@ -201,65 +181,22 @@ const App = () => {
                                         <b>WebM</b>
                                         <span>Standard Original</span>
                                     </div>
-                                    <div
-                                        className={`yrd-format-card ${!isPremium ? 'locked' : ''}`}
-                                        onClick={() => !isPremium && setShowUpgrade(true)}
-                                    >
+                                    <div className="yrd-format-card">
                                         <b>MP4 HD</b>
-                                        <span>Pro Feature <Lock size={12} /></span>
+                                        <span>Standard Original</span>
                                     </div>
-                                    <div
-                                        className={`yrd-format-card ${!isPremium ? 'locked' : ''}`}
-                                        onClick={() => !isPremium && setShowUpgrade(true)}
-                                    >
+                                    <div className="yrd-format-card">
                                         <b>MP3 Audio</b>
-                                        <span>Pro Feature <Lock size={12} /></span>
+                                        <span>Standard Original</span>
                                     </div>
                                 </div>
                             </motion.div>
                         )}
                     </div>
 
-                    <div className="yrd-footer-note">
-                        {status}
-                    </div>
                 </div>
 
-                {/* Upgrade Modal Overlay */}
-                <AnimatePresence>
-                    {showUpgrade && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="yrd-overlay"
-                        >
-                            <motion.div
-                                initial={{ scale: 0.9, y: 20 }}
-                                animate={{ scale: 1, y: 0 }}
-                                exit={{ scale: 0.9, y: 20 }}
-                                className="yrd-modal"
-                            >
-                                <h3>Upgrade to <span>Pro</span></h3>
-                                <p>Free clips are limited to 15 seconds. Unlock unlimited lengths and HD formats.</p>
-                                <ul className="yrd-pro-list">
-                                    <li>🚀 Unlimited Clip Length</li>
-                                    <li>🎥 MP4 & MP3 Exports</li>
-                                    <li>💎 Best available Resolution</li>
-                                    <li>📂 Batch Downloads</li>
-                                </ul>
-                                <button className="yrd-btn-unlock">Unlock Everything — $4.99</button>
-                                <button
-                                    className="yrd-btn-cancel"
-                                    onClick={() => setShowUpgrade(false)}
-                                >
-                                    Maybe later
-                                </button>
-                            </motion.div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.div>
+                </motion.div>
         </div>
     );
 };
