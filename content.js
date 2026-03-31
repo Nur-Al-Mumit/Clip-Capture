@@ -7,14 +7,30 @@ function injectDownloader() {
 
   if (!sidebar) return;
 
+  // Function to get the most current title
+  const getUpToDateTitle = () => {
+    let title = document.querySelector('ytd-watch-metadata h1')?.innerText ||
+      document.querySelector('h1.ytd-watch-metadata')?.innerText ||
+      document.querySelector('.ytd-video-primary-info-renderer h1')?.innerText ||
+      document.querySelector('h1.title.ytd-video-primary-info-renderer')?.innerText ||
+      document.querySelector('yt-formatted-string.ytd-watch-metadata')?.innerText ||
+      document.querySelector('meta[property="og:title"]')?.content ||
+      document.title.replace(/ - YouTube$/, "").trim();
+
+    // Final check to ignore generic "YouTube" word
+    return title && title !== "YouTube" ? title : "Video";
+  };
+
+  const videoTitle = getUpToDateTitle();
+
   const panel = document.createElement('div');
   panel.id = 'yt-range-downloader-panel';
   panel.innerHTML = `
     <div class="yrd-container">
       <div class="yrd-header">
         <div class="yrd-title">
-          <span class="yrd-icon-sparkle">✨</span>
-          PURE CAPTURE
+          <span class="yrd-icon-sparkle">🎬</span>
+          <span class="yrd-video-title">${videoTitle}</span>
           <span class="yrd-version">v6.0</span>
         </div>
       </div>
@@ -73,6 +89,9 @@ function injectDownloader() {
     if (e <= s) return alert("End must be after Start!");
     if (e - s > 300) return alert("Max recording is 5 minutes for stability.");
 
+    // Get freshest title at the moment of download
+    const currentTitle = getUpToDateTitle();
+
     // Start local capture
     btn.classList.add('recording');
     btn.innerHTML = `<span class="yrd-record-dot pulsed"></span> RECORDING...`;
@@ -92,8 +111,9 @@ function injectDownloader() {
       const blob = new Blob(chunks, { type: 'video/webm' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
+      const cleanTitle = currentTitle.replace(/[\\/:"*?<>|]/g, "");
       a.href = url;
-      a.download = `yt-clip-${s}-${e}.webm`;
+      a.download = `${cleanTitle}-${s}-${e}.webm`;
       a.click();
 
       btn.classList.remove('recording');
