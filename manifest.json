@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "YT Custom Clipper (No Server)",
+  "version": "5.0",
+  "description": "100% Independent YouTube clipping without third-party servers.",
+  "permissions": ["activeTab", "scripting", "downloads", "offscreen", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/watch*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "host_permissions": ["*://*.youtube.com/*"]
+}

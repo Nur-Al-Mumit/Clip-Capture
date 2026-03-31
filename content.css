@@ -1,0 +1,80 @@
+#yt-range-downloader-panel {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #000 !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: block !important;
+}
+
+.yrd-header {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  color: #000 !important;
+}
+
+.yrd-row {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.yrd-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.yrd-row button {
+  padding: 8px 12px;
+  background: #065fd4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.yrd-buttons button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.yrd-buttons button.primary {
+  background: #cc0000;
+  color: white;
+}
+
+.yrd-buttons button.secondary {
+  background: #333;
+  color: white;
+}
+
+/* Dark mode fix */
+[dark] #yt-range-downloader-panel, [dark-theme] #yt-range-downloader-panel {
+    background: #1e1e1e;
+    color: #fff !important;
+    border-color: #333;
+}
+[dark] .yrd-header, [dark-theme] .yrd-header {
+    color: #fff !important;
+    border-color: #444;
+}
+[dark] input, [dark-theme] input {
+    background: #111;
+    color: #fff;
+    border-color: #444;
+}
