@@ -9,7 +9,7 @@ export default defineConfig({
       input: {
         popup: resolve(__dirname, 'popup.html'),
         content: resolve(__dirname, 'src/content/main.jsx'),
-        background: resolve(__dirname, 'background.js'),
+        background: resolve(__dirname, 'src/background/background.js'),
       },
       output: {
         format: 'esm',

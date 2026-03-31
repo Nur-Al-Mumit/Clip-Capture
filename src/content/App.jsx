@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Play, Save, History, Settings, ExternalLink, Zap, Lock } from 'lucide-react';
+import { Sparkles, Play, Save, History, Settings, ExternalLink, Zap, Lock, Video, Clapperboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const App = () => {
@@ -112,7 +112,7 @@ const App = () => {
                 {/* Header */}
                 <div className="yrd-header">
                     <div className="yrd-title">
-                        <Sparkles size={14} className="yrd-sparkle-icon" />
+                        <Clapperboard size={14} className="yrd-clapper-icon" />
                         <span className="yrd-video-title">{videoTitle}</span>
                         {!isPremium && (
                             <span 
