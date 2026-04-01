@@ -115,21 +115,44 @@ body {
 .menu-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 14px;
-    padding: 14px;
+    padding: 12px 16px;
     background: var(--surface);
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
     border: 1px solid transparent;
 }
 
-.menu-item:hover {
+.menu-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-item:hover:not(.disabled) {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
+}
+
+.menu-item.disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+
+.coming-soon {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--dim-text);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
 }
 
 .popup-footer {

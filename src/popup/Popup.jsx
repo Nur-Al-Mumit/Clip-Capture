@@ -15,7 +15,7 @@ const Popup = () => {
                         <div className="logo">🎬</div>
                         <h1>Clip Capture</h1>
                     </div>
-                    <span className="badge">v6.0</span>
+                    <span className="badge">V1.0</span>
                 </header>
 
                 <div className="status-banner">
@@ -25,17 +25,26 @@ const Popup = () => {
 
                 <div className="menu-sections">
                     <nav className="menu-links">
-                        <div className="menu-item">
-                            <Settings size={18} />
-                            <span>Preferences</span>
+                        <div className="menu-item disabled">
+                            <div className="menu-item-left">
+                                <Settings size={18} />
+                                <span>Preferences</span>
+                            </div>
+                            <span className="coming-soon">Coming Soon</span>
                         </div>
-                        <div className="menu-item">
-                            <History size={18} />
-                            <span>My History</span>
+                        <div className="menu-item disabled">
+                            <div className="menu-item-left">
+                                <History size={18} />
+                                <span>My History</span>
+                            </div>
+                            <span className="coming-soon">Coming Soon</span>
                         </div>
-                        <div className="menu-item">
-                            <MessageSquare size={18} />
-                            <span>Support</span>
+                        <div className="menu-item disabled">
+                            <div className="menu-item-left">
+                                <MessageSquare size={18} />
+                                <span>Support</span>
+                            </div>
+                            <span className="coming-soon">Coming Soon</span>
                         </div>
                     </nav>
                 </div>
