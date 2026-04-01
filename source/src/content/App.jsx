@@ -7,10 +7,26 @@ const App = () => {
     const [startTime, setStartTime] = useState('0:00');
     const [endTime, setEndTime] = useState('1:00');
     const [isRecording, setIsRecording] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(true);
 
     // Get YouTube Video Title
     const [videoTitle, setVideoTitle] = useState('Video');
     useEffect(() => {
+        // Load initial state
+        chrome.storage.local.get(['extensionEnabled'], (result) => {
+            if (result.extensionEnabled !== undefined) {
+                setIsEnabled(result.extensionEnabled);
+            }
+        });
+
+        // Listen for changes
+        const handleStorageChange = (changes) => {
+            if (changes.extensionEnabled) {
+                setIsEnabled(changes.extensionEnabled.newValue);
+            }
+        };
+        chrome.storage.onChanged.addListener(handleStorageChange);
+
         const getTitle = () => {
             let title = document.querySelector('ytd-watch-metadata h1')?.innerText ||
                 document.querySelector('meta[property="og:title"]')?.content ||
@@ -18,6 +34,8 @@ const App = () => {
             setVideoTitle(title && title !== "YouTube" ? title : "Video");
         };
         getTitle();
+
+        return () => chrome.storage.onChanged.removeListener(handleStorageChange);
     }, []);
 
     const handleSetStart = () => {
@@ -90,6 +108,8 @@ const App = () => {
         if (parts.length === 2) return parts[0] * 60 + parts[1];
         return parts[0] || 0;
     };
+
+    if (!isEnabled) return null;
 
     return (
         <div id="yt-range-downloader-panel" className="yrd-premium-skin">
@@ -202,7 +222,7 @@ const App = () => {
 
                 </div>
 
-                </motion.div>
+            </motion.div>
         </div>
     );
 };

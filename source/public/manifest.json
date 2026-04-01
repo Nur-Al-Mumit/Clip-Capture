@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Clip Capture",
+  "version": "6.0",
+  "description": "Seamlessly capture and download specific clips from YouTube videos.",
+  "permissions": ["activeTab", "scripting", "downloads", "tabs", "storage"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/watch*"],
+      "js": ["loader.js"],
+      "css": ["assets/content.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content.js", "assets/*"],
+      "matches": ["*://*.youtube.com/*"]
+    }
+  ],
+  "host_permissions": ["*://*.youtube.com/*"]
+}

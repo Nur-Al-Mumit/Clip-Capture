@@ -1,0 +1,2 @@
+node_modules
+# Remove dist to allow it to be committed as per user request for easy installation

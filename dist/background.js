@@ -1,0 +1,1 @@
+chrome.runtime.onMessage.addListener((t,a,r)=>{if(t.type==="GET_PLAYER_DATA")return chrome.scripting.executeScript({target:{tabId:a.tab.id},world:"MAIN",func:()=>window.ytInitialPlayerResponse||(typeof ytplayer<"u"?ytplayer.config.args.player_response:null)},e=>{e&&e[0]?r({payload:e[0].result}):r({error:"Could not access video data."})}),!0});

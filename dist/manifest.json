@@ -3,7 +3,7 @@
   "name": "Clip Capture",
   "version": "6.0",
   "description": "Seamlessly capture and download specific clips from YouTube videos.",
-  "permissions": ["activeTab", "scripting", "downloads", "tabs"],
+  "permissions": ["activeTab", "scripting", "downloads", "tabs", "storage"],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
