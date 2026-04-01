@@ -181,12 +181,18 @@ const App = () => {
                                         <b>WebM</b>
                                         <span>Standard Original</span>
                                     </div>
-                                    <div className="yrd-format-card">
-                                        <b>MP4 HD</b>
+                                    <div className="yrd-format-card locked">
+                                        <div className="yrd-format-row">
+                                            <b>MP4 HD</b>
+                                            <span className="yrd-coming-soon">Coming Soon</span>
+                                        </div>
                                         <span>Standard Original</span>
                                     </div>
-                                    <div className="yrd-format-card">
-                                        <b>MP3 Audio</b>
+                                    <div className="yrd-format-card locked">
+                                        <div className="yrd-format-row">
+                                            <b>MP3 Audio</b>
+                                            <span className="yrd-coming-soon">Coming Soon</span>
+                                        </div>
                                         <span>Standard Original</span>
                                     </div>
                                 </div>
