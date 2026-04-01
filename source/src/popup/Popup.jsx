@@ -44,13 +44,13 @@ const Popup = () => {
                         )}
                         <span>{isEnabled ? 'Engine Active' : 'Engine Paused'}</span>
                     </div>
-                    
-                    <button 
-                        className={`toggle-switch ${isEnabled ? 'on' : 'off'}`} 
+
+                    <button
+                        className={`toggle-switch ${isEnabled ? 'on' : 'off'}`}
                         onClick={toggleExtension}
                         aria-label="Toggle Extension"
                     >
-                        <motion.div 
+                        <motion.div
                             className="switch-handle"
                             animate={{ x: isEnabled ? 18 : 0 }}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -86,7 +86,11 @@ const Popup = () => {
 
                 <footer className="popup-footer">
                     <p>Open YouTube to start capturing</p>
-                    <div className="footer-links">
+                    <div
+                        className="footer-links"
+                        onClick={() => window.open('https://github.com/Nur-Al-Mumit/Clip-Capture', '_blank')}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <ExternalLink size={12} />
                         <span>View Documentation</span>
                     </div>
