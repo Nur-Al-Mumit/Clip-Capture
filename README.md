@@ -2,6 +2,9 @@
 
 Capture and download specific clips from YouTube videos directly in your browser.
 
+![Clip Capture Hero](assets/clip_capture_hero.png)
+
+
 ## My Journey (Why I Built This)
 
 I frequently found myself needing just a small, specific part of a YouTube video. Every single time, I had to download the entire large video and then manually cut the clip out. It was a hassle and a waste of time.
@@ -74,6 +77,24 @@ The source code is located in the `source/` directory.
 Enjoy capturing!
 
 ---
+
+## 🤝 Contributing & Support
+
+This project is a community-driven open-source tool, and your help is always welcome!
+
+-   **Found a bug?** Please [open an issue](https://github.com/Nur-Al-Mumit/Clip-Capture/issues) and describe the problem you encountered.
+-   **Have a feature idea?** Feel free to suggest new features or improvements by opening an issue.
+-   **Want to contribute code?** 
+    1. **Fork** the repository.
+    2. Create your **feature branch**.
+    3. **Commit** your changes.
+    4. **Push** to the branch.
+    5. Open a **Pull Request**.
+
+Any contribution, no matter how small, really helps! Thank you for supporting the project.
+
+---
+
 
 ## 📸 Screenshots
 
