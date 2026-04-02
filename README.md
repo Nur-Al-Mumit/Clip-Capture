@@ -1,14 +1,14 @@
-# Clip Capture 🎬
+# Clip Capture
 
 Capture and download specific clips from YouTube videos directly in your browser.
 
-## 📖 My Journey (Why I Built This)
+## My Journey (Why I Built This)
 
 I frequently found myself needing just a small, specific part of a YouTube video. Every single time, I had to download the entire large video and then manually cut the clip out. It was a hassle and a waste of time.
 
 I built **Clip Capture** as a personal solution to solve this exact problem—no fancy extras, just a tool that serves its purpose. Realizing that many other people likely face this same frustration, I make it open-source and share it with everyone. 
 
-I'm sharing it here on GitHub (instead of the Chrome Web Store) because I don't currently have a payment method to cover the developer registration fee, but I didn't want that to stop me from sharing this solution with you!
+This project is entirely open-source! However, since I currently don't have a payment method to cover the developer registration fee for the Chrome Web Store, I cannot publish it there for an easy 1-click install. Because of this limitation, you will need to download the `dist` folder included here and manually install it via **Developer mode** -> **Load unpacked**.
 
 ---
 
@@ -71,4 +71,4 @@ The source code is located in the `source/` directory.
 -   🎨 **Premium UI:** Fast, reactive, and beautiful design.
 -   📁 **Open Source:** Totally free and transparent.
 
-Enjoy capturing! 🎬🚀
+Enjoy capturing!
