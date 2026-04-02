@@ -72,3 +72,11 @@ The source code is located in the `source/` directory.
 -   📁 **Open Source:** Totally free and transparent.
 
 Enjoy capturing!
+
+---
+
+## 📸 Screenshots
+
+| The Extension Menu | Precise YouTube Clipping | Output Formatting |
+| :---: | :---: | :---: |
+| ![Popup Menu](assets/popup.png) | ![Capture Time](assets/capture.png) | ![Output Format](assets/format.png) |
