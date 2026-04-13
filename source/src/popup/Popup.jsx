@@ -85,7 +85,7 @@ const Popup = () => {
                 </div>
 
                 <footer className="popup-footer">
-                    <p>Open YouTube to start capturing</p>
+                    <p>Open a video page to start capturing</p>
                     <div
                         className="footer-links"
                         onClick={() => window.open('https://github.com/Nur-Al-Mumit/Clip-Capture', '_blank')}

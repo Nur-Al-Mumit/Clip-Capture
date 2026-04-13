@@ -1,9 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Clip Capture",
-  "version": "6.0",
-  "description": "Seamlessly capture and download specific clips from YouTube videos.",
-  "permissions": ["activeTab", "scripting", "downloads", "tabs", "storage"],
+  "version": "1.0.0",
+  "description": "Capture and record specific segments from web videos seamlessly for offline review.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
@@ -23,16 +27,26 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/watch*"],
-      "js": ["loader.js"],
-      "css": ["assets/content.css"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "loader.js"
+      ],
+      "css": [
+        "assets/content.css"
+      ]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["content.js", "assets/*"],
-      "matches": ["*://*.youtube.com/*"]
+      "resources": [
+        "content.js",
+        "assets/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
-  ],
-  "host_permissions": ["*://*.youtube.com/*"]
+  ]
 }

@@ -1,13 +1,13 @@
 # Clip Capture
 
-Capture and download specific clips from YouTube videos directly in your browser.
+Capture and record specific clips from web videos directly in your browser.
 
 ![Clip Capture Hero](assets/clip_capture_hero.png)
 
 
 ## My Journey (Why I Built This)
 
-I frequently found myself needing just a small, specific part of a YouTube video. Every single time, I had to download the entire large video and then manually cut the clip out. It was a hassle and a waste of time.
+I frequently found myself needing just a small, specific part of a video I was watching online. Every single time, I had to download the entire large video and then manually cut the clip out. It was a hassle and a waste of time.
 
 I built **Clip Capture** as a personal solution to solve this exact problem—no fancy extras, just a tool that serves its purpose. Realizing that many other people likely face this same frustration, I make it open-source and share it with everyone. 
 
@@ -39,7 +39,7 @@ If you just want to use the extension without coding, follow these steps:
 2.  Open your browser and navigate to `chrome://extensions/` (or `edge://extensions/`).
 3.  **Enable "Developer mode"** in the top-right corner.
 4.  Click **"Load unpacked"** and select the `dist/` folder you just downloaded.
-5.  Open any YouTube video and start capturing!
+5.  Open any video page and start capturing!
 
 ---
 
@@ -98,6 +98,6 @@ Any contribution, no matter how small, really helps! Thank you for supporting th
 
 ## 📸 Screenshots
 
-| The Extension Menu | Precise YouTube Clipping | Output Formatting |
+| The Extension Menu | Precise Web Video Clipping | Output Formatting |
 | :---: | :---: | :---: |
 | ![Popup Menu](assets/popup.png) | ![Capture Time](assets/capture.png) | ![Output Format](assets/format.png) |

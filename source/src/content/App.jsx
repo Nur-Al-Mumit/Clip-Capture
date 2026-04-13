@@ -9,7 +9,7 @@ const App = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [isEnabled, setIsEnabled] = useState(true);
 
-    // Get YouTube Video Title
+    // Get Video Title
     const [videoTitle, setVideoTitle] = useState('Video');
     useEffect(() => {
         // Load initial state
@@ -28,10 +28,10 @@ const App = () => {
         chrome.storage.onChanged.addListener(handleStorageChange);
 
         const getTitle = () => {
-            let title = document.querySelector('ytd-watch-metadata h1')?.innerText ||
+            let title = document.querySelector('h1')?.innerText ||
                 document.querySelector('meta[property="og:title"]')?.content ||
-                document.title.replace(/ - YouTube$/, "").trim();
-            setVideoTitle(title && title !== "YouTube" ? title : "Video");
+                document.title.replace(/ - YouTube$/i, "").trim();
+            setVideoTitle(title && !/YouTube/i.test(title) ? title : "Video Clip");
         };
         getTitle();
 
@@ -59,7 +59,7 @@ const App = () => {
     const handleCapture = () => {
         const s = parseTime(startTime);
         const e = parseTime(endTime);
-        const video = document.querySelector('video.html5-main-video');
+        const video = document.querySelector('video');
 
         if (!video) return alert("Video not found!");
         if (e <= s) return alert("End must be after Start!");
@@ -112,7 +112,7 @@ const App = () => {
     if (!isEnabled) return null;
 
     return (
-        <div id="yt-range-downloader-panel" className="yrd-premium-skin">
+        <div id="video-clip-capture-panel" className="yrd-premium-skin">
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

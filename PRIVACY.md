@@ -8,9 +8,8 @@ Clip Capture ("we," "us," or "our") is committed to protecting your privacy. Thi
 Clip Capture **does not collect, store, or transmit** any personal data, browsing history, or video content to external servers. All processing (video segmenting and recording) happens entirely on your local machine.
 
 ### 2. Permissions Use
-- **activeTab / tabs:** Used to gain temporary access to the YouTube player when you open the popup.
+- **activeTab:** Used to gain temporary access to the video player when you open the popup.
 - **scripting:** Used to interact with the media player to capture the video/audio stream in real-time.
-- **downloads:** Used to save the final clip directly to your local machine.
 - **storage:** Used to save your local extension settings (like preferred quality).
 
 ### 3. Third-Party Sharing
