@@ -28,10 +28,10 @@ const App = () => {
         chrome.storage.onChanged.addListener(handleStorageChange);
 
         const getTitle = () => {
-            let title = document.querySelector('h1')?.innerText ||
+            const title = document.querySelector('h1')?.innerText ||
                 document.querySelector('meta[property="og:title"]')?.content ||
-                document.title.replace(/ - YouTube$/i, "").trim();
-            setVideoTitle(title && !/YouTube/i.test(title) ? title : "Video Clip");
+                document.title.trim();
+            setVideoTitle(title || 'Video Clip');
         };
         getTitle();
 
