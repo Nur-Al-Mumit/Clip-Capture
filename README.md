@@ -11,7 +11,7 @@ I frequently found myself needing just a small, specific part of a YouTube video
 
 I built **Clip Capture** as a personal solution to solve this exact problem—no fancy extras, just a tool that serves its purpose. Realizing that many other people likely face this same frustration, I make it open-source and share it with everyone. 
 
-This project is entirely open-source! However, since I currently don't have a payment method to cover the developer registration fee for the Chrome Web Store, I cannot publish it there for an easy 1-click install. Because of this limitation, you will need to download the `dist` folder included here and manually install it via **Developer mode** -> **Load unpacked**.
+This project is entirely open-source! However, I tried to put it on the Chrome Web Store, but some brain-dead corporate ... at Google rejected it for 'Violation: Blue Zinc'. Because of this, there's no 1-click install. So you have to download the `dist` folder and manually install it via **Developer mode** -> **Load unpacked**.
 
 ---
 
