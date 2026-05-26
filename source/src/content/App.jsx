@@ -8,6 +8,7 @@ const App = () => {
     const [endTime, setEndTime] = useState('1:00');
     const [isRecording, setIsRecording] = useState(false);
     const [isEnabled, setIsEnabled] = useState(true);
+    const [format, setFormat] = useState('webm');
 
     // Get YouTube Video Title
     const [videoTitle, setVideoTitle] = useState('Video');
@@ -72,8 +73,18 @@ const App = () => {
 
         // 2. Setup the Stream Capture
         const stream = video.captureStream();
+
+        // Check if MP4 is supported by the browser's MediaRecorder
+        const isMp4Supported = MediaRecorder.isTypeSupported('video/mp4');
+        const selectedMimeType = (format === 'mp4' && isMp4Supported) ? 'video/mp4' : 'video/webm; codecs=vp9';
+        const fileExt = (format === 'mp4' && isMp4Supported) ? 'mp4' : 'webm';
+
+        if (format === 'mp4' && !isMp4Supported) {
+            alert("Direct MP4 recording is not supported in this browser. Recording as WebM instead.");
+        }
+
         const mediaRecorder = new MediaRecorder(stream, {
-            mimeType: 'video/webm; codecs=vp9'
+            mimeType: selectedMimeType
         });
         const chunks = [];
 
@@ -82,12 +93,12 @@ const App = () => {
         };
 
         mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'video/webm' });
+            const blob = new Blob(chunks, { type: selectedMimeType });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             const cleanTitle = videoTitle.replace(/[\\/:"*?<>|]/g, "").substring(0, 100);
             a.href = url;
-            a.download = `${cleanTitle}-${startTime.replace(/:/g, '-')}-${endTime.replace(/:/g, '-')}.webm`;
+            a.download = `${cleanTitle}-${startTime.replace(/:/g, '-')}-${endTime.replace(/:/g, '-')}.${fileExt}`;
             a.click();
 
             setIsRecording(false);
@@ -197,23 +208,30 @@ const App = () => {
                                 className="yrd-tab-view"
                             >
                                 <div className="yrd-format-options">
-                                    <div className="yrd-format-card active">
+                                    <div
+                                        className={`yrd-format-card ${format === 'webm' ? 'active' : ''}`}
+                                        onClick={() => setFormat('webm')}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         <b>WebM</b>
                                         <span>Standard Original</span>
                                     </div>
-                                    <div className="yrd-format-card locked">
+                                    <div
+                                        className={`yrd-format-card ${format === 'mp4' ? 'active' : ''}`}
+                                        onClick={() => setFormat('mp4')}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         <div className="yrd-format-row">
                                             <b>MP4 HD</b>
-                                            <span className="yrd-coming-soon">Coming Soon</span>
                                         </div>
-                                        <span>Standard Original</span>
+                                        <span>Widely Supported</span>
                                     </div>
                                     <div className="yrd-format-card locked">
                                         <div className="yrd-format-row">
                                             <b>MP3 Audio</b>
                                             <span className="yrd-coming-soon">Coming Soon</span>
                                         </div>
-                                        <span>Standard Original</span>
+                                        <span>Audio Only</span>
                                     </div>
                                 </div>
                             </motion.div>
