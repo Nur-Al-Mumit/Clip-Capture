@@ -35,7 +35,23 @@ const App = () => {
         };
         getTitle();
 
-        return () => chrome.storage.onChanged.removeListener(handleStorageChange);
+        const handleNavigate = () => {
+            setTimeout(getTitle, 1000);
+        };
+        window.addEventListener('yt-navigate-finish', handleNavigate);
+
+        // Observe title changes as a fallback
+        const titleObserver = new MutationObserver(getTitle);
+        const titleElement = document.querySelector('title');
+        if (titleElement) {
+            titleObserver.observe(titleElement, { childList: true });
+        }
+
+        return () => {
+            chrome.storage.onChanged.removeListener(handleStorageChange);
+            window.removeEventListener('yt-navigate-finish', handleNavigate);
+            titleObserver.disconnect();
+        };
     }, []);
 
     const handleSetStart = () => {
