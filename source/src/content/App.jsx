@@ -3,7 +3,6 @@ import { Zap, Clapperboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const App = () => {
-    const [activeTab, setActiveTab] = useState('capture');
     const [startTime, setStartTime] = useState('0:00');
     const [endTime, setEndTime] = useState('1:00');
     const [isRecording, setIsRecording] = useState(false);
@@ -139,103 +138,70 @@ const App = () => {
 
                 {/* Main Content Area */}
                 <div className="yrd-content">
-                    <div className="yrd-tabs">
-                        <button
-                            className={activeTab === 'capture' ? 'active' : ''}
-                            onClick={() => setActiveTab('capture')}
-                        >
-                            Capture
-                        </button>
-                        <button
-                            className={activeTab === 'format' ? 'active' : ''}
-                            onClick={() => setActiveTab('format')}
-                        >
-                            Format
-                        </button>
-                    </div>
-
                     <div className="yrd-body">
-                        {activeTab === 'capture' && (
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key="capture"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: 10 }}
-                                    className="yrd-tab-view"
-                                >
-                                    <div className="yrd-input-group">
-                                        <label>START TIME</label>
-                                        <div className="yrd-input-wrapper">
-                                            <input type="text" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
-                                            <button onClick={handleSetStart} className="yrd-btn-set">SET</button>
-                                        </div>
-                                    </div>
-
-                                    <div className="yrd-input-group">
-                                        <label>END TIME</label>
-                                        <div className="yrd-input-wrapper">
-                                            <input type="text" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
-                                            <button onClick={handleSetEnd} className="yrd-btn-set">SET</button>
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={handleCapture}
-                                        className={`yrd-btn-primary ${isRecording ? 'recording' : ''}`}
-                                    >
-                                        {isRecording ? (
-                                            <>
-                                                <div className="yrd-pulse-dot" />
-                                                RECORDING...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Zap size={16} fill="white" />
-                                                CAPTURE CLIP
-                                            </>
-                                        )}
-                                    </button>
-                                </motion.div>
-                            </AnimatePresence>
-                        )}
-
-                        {activeTab === 'format' && (
-                            <motion.div
-                                key="format"
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                className="yrd-tab-view"
-                            >
+                        <div className="yrd-tab-view">
+                            <div className="yrd-input-group" style={{ marginBottom: '16px' }}>
+                                <label>FORMAT</label>
                                 <div className="yrd-format-options">
                                     <div
                                         className={`yrd-format-card ${format === 'webm' ? 'active' : ''}`}
                                         onClick={() => setFormat('webm')}
-                                        style={{ cursor: 'pointer' }}
+                                        style={{ cursor: 'pointer', margin: 0 }}
                                     >
                                         <b>WebM</b>
-                                        <span>Standard Original</span>
+                                        <span style={{ fontSize: '10px' }}>Standard</span>
                                     </div>
                                     <div
                                         className={`yrd-format-card ${format === 'mp4' ? 'active' : ''}`}
                                         onClick={() => setFormat('mp4')}
-                                        style={{ cursor: 'pointer' }}
+                                        style={{ cursor: 'pointer', margin: 0 }}
                                     >
-                                        <div className="yrd-format-row">
-                                            <b>MP4 HD</b>
-                                        </div>
-                                        <span>Widely Supported</span>
+                                        <b>MP4 HD</b>
+                                        <span style={{ fontSize: '10px' }}>Supported</span>
                                     </div>
-                                    <div className="yrd-format-card locked">
-                                        <div className="yrd-format-row">
-                                            <b>MP3 Audio</b>
-                                            <span className="yrd-coming-soon">Coming Soon</span>
-                                        </div>
-                                        <span>Audio Only</span>
+                                    <div
+                                        className="yrd-format-card"
+                                        style={{ cursor: 'not-allowed', margin: 0, opacity: 0.5 }}
+                                    >
+                                        <b>MP3</b>
+                                        <span style={{ fontSize: '10px' }}>Coming soon</span>
                                     </div>
                                 </div>
-                            </motion.div>
-                        )}
+                            </div>
+
+                            <div className="yrd-input-group">
+                                <label>START TIME</label>
+                                <div className="yrd-input-wrapper">
+                                    <input type="text" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+                                    <button onClick={handleSetStart} className="yrd-btn-set">SET</button>
+                                </div>
+                            </div>
+
+                            <div className="yrd-input-group">
+                                <label>END TIME</label>
+                                <div className="yrd-input-wrapper">
+                                    <input type="text" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+                                    <button onClick={handleSetEnd} className="yrd-btn-set">SET</button>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handleCapture}
+                                className={`yrd-btn-primary ${isRecording ? 'recording' : ''}`}
+                            >
+                                {isRecording ? (
+                                    <>
+                                        <div className="yrd-pulse-dot" />
+                                        RECORDING...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Zap size={16} fill="white" />
+                                        CAPTURE CLIP
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
 
                 </div>
