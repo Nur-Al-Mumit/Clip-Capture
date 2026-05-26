@@ -98,6 +98,6 @@ Any contribution, no matter how small, really helps! Thank you for supporting th
 
 ## 📸 Screenshots
 
-| The Extension Menu | Precise YouTube Clipping | Output Formatting |
-| :---: | :---: | :---: |
-| ![Popup Menu](assets/popup.png) | ![Capture Time](assets/capture.png) | ![Output Format](assets/format.png) |
+| The Extension Menu | Capture |
+| :---: | :---: |
+| ![Popup Menu](assets/popup.png) | ![Capture](assets/capture.png) |
